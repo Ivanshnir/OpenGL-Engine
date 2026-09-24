@@ -17,6 +17,7 @@ target_include_directories(MyEngine PRIVATE
     dependencies/glad
     dependencies/KHR
     dependencies/GLFW/include
+    dependencies/glm
     )
 
 target_link_libraries(MyEngine PRIVATE glfw OpenGL::GL)

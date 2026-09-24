@@ -7,28 +7,32 @@
 #include <iterator>
 #include <string>
 #include "Engine.h"
+
 #define HEIGHT 640
 #define WIDTH 500
 #define NAME "My_Engine0.0.1"
 
-#define TEXTURE1_PATH "C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\textures\\awesomeface.png"
-#define TEXTURE2_PATH "C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\textures\\container.jpg"
-#define SHADER_VERTEX_PATH "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/shaders/Vertex_Shader.glsl"
-#define SHADER_FRAGMENT_PATH "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/shaders/Fragment_Shader.glsl"
+#define TEXTURE1_PATH "../src/textures/awesomeface.png"
+#define TEXTURE2_PATH "../src/textures/container.jpg"
+#define SHADER_VERTEX_PATH "../src/shaders/Vertex_Shader.glsl"
+#define SHADER_FRAGMENT_PATH "../src/shaders/Fragment_Shader.glsl"
 unsigned int * learning_stuff();
+void LearnMatrices(Shader * ourShader);
+
+
 int main(){
     GLFWwindow * window = window_creating(HEIGHT, WIDTH, NAME);
-    float vertices[] = {
-        // positions          // colors           // texture coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
-    };  
-    unsigned int tris[] = {
-        0, 1, 3,
-        1, 2, 3
-    };
+    // float vertices[] = {
+    //     // positions          // colors           // texture coords
+    //     0.5f,  0.5f, 0.0f,  1.0f, 1.0f,   // top right
+    //     0.5f, -0.5f, 0.0f,   1.0f, 0.0f,   // bottom right
+    //     -0.5f, -0.5f, 0.0f,   0.0f, 0.0f,   // bottom left
+    //     -0.5f,  0.5f, 0.0f,   0.0f, 1.0f    // top left 
+    // };  
+    // unsigned int tris[] = {
+    //     0, 1, 3,
+    //     1, 2, 3
+    // };
     stbi_set_flip_vertically_on_load(true);
     Shader my_mini_shader = Shader(SHADER_VERTEX_PATH, SHADER_FRAGMENT_PATH);
     if(my_mini_shader.get_debug() != ""){
@@ -41,39 +45,37 @@ int main(){
     my_mini_shader.use_shader();
     glUniform1i(glGetUniformLocation(my_mini_shader.ID(), "texture1"), 0);
     glUniform1i(glGetUniformLocation(my_mini_shader.ID(), "texture2"), 1);
-    unsigned int VBO;
-    unsigned int EBO;
-    unsigned int VAO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
 
-    glBindVertexArray(VAO);
+//    unsigned int VBO, VAO, EBO;
+//     glGenVertexArrays(1, &VAO);
+//     glGenBuffers(1, &VBO);
+//     glGenBuffers(1, &EBO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);  
+//     glBindVertexArray(VAO);
 
-    
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(tris), tris, GL_STATIC_DRAW);
-    
-    
+//     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+//     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    // color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3* sizeof(float)));
-    glEnableVertexAttribArray(1);
-    // Texture attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), (void*)(6*sizeof(float)));
-    glEnableVertexAttribArray(2);
+//     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+//     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(tris), tris, GL_STATIC_DRAW);
 
-    
+//     // position attribute
+//     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+//     glEnableVertexAttribArray(0);
+//     // texture coord attribute
+//     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+//     glEnableVertexAttribArray(1);    
+
+
+    GameObject MyNewCube = GameObject::Cube(new Vector3(0.0f, 0.0f, 0.0f));
+    Vector3 myRotation = Vector3(0.5f, 0.2f, 0.3f);
+    float my_angle;
     if(window == nullptr) return -1;
+    float comp = 1.0f;
+    float comp_factor = 0.01f; 
     while(!glfwWindowShouldClose(window))
     {
+        LearnMatrices(&my_mini_shader);
         glClearColor(0.2f,0.3f, 0.4f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glActiveTexture(GL_TEXTURE0);
@@ -84,16 +86,18 @@ int main(){
             std::cout << my_mini_shader.get_debug();
             return -1;
         }   
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
+        my_angle = ((float)glfwGetTime()/comp);
+        comp += comp_factor;
+        MyNewCube.Rotate(myRotation, my_angle);
+        MyNewCube.Show(&my_mini_shader);
         glfwSwapBuffers(window);
         glfwPollEvents();    
         
-    }
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
+    };
     glfwTerminate();
+
+
 }
 
 unsigned int * learning_stuff(){
@@ -154,4 +158,14 @@ unsigned int * learning_stuff(){
     
     return textures;
 }
-
+void LearnMatrices(Shader* ourShader) {
+    glm::mat4 model         = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 view          = glm::mat4(1.0f);
+    glm::mat4 projection    = glm::mat4(1.0f);
+    projection = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+    // std::cout << ourShader.ID() << " , ";
+    (*ourShader).SetMat4("model", glm::value_ptr(model));
+    (*ourShader).SetMat4("view", glm::value_ptr(view));
+    (*ourShader).SetMat4("projection", glm::value_ptr(projection));
+    glm::mat4 proj = glm::perspective(glm::radians(45.0f), (float)WIDTH/(float)HEIGHT, 0.1f, 100.0f);
+}
