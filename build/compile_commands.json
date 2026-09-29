@@ -1,27 +1,45 @@
 [
 {
   "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\main.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\main.cpp",
-  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/main.cpp",
-  "output": "CMakeFiles/MyEngine.dir/src/main.cpp.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\main.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\main.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/main.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/main.cpp.obj"
 },
 {
   "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\Engine_IMP.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\Engine_IMP.cpp",
-  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/Engine_IMP.cpp",
-  "output": "CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\shaders.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\shaders.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/shaders.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj"
 },
 {
   "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles/MyEngine.dir/includes_C.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\glad.c.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\glad.c",
-  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/glad.c",
-  "output": "CMakeFiles/MyEngine.dir/src/glad.c.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\game_objects.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\game_objects.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/game_objects.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj"
 },
 {
   "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\stb_image_imp.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\stb_image_imp.cpp",
-  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/stb_image_imp.cpp",
-  "output": "CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj"
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles/MyEngine.dir/includes_C.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\linked_libraries\\glad\\glad.c.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\linked_libraries\\glad\\glad.c",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/glad/glad.c",
+  "output": "CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj"
+},
+{
+  "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\window_and_engine_manager.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\window_and_engine_manager.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/window_and_engine_manager.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj"
+},
+{
+  "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\MainGameCode.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\MainGameCode.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/MainGameCode.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj"
+},
+{
+  "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MyEngine.dir/includes_CXX.rsp -g -o CMakeFiles\\MyEngine.dir\\src\\core\\linked_libraries\\img_reading\\stb_image_imp.cpp.obj -c C:\\Users\\Lampa\\Documents\\ProjectssC++\\OpenGLEngine\\OpenGL-Engine\\src\\core\\linked_libraries\\img_reading\\stb_image_imp.cpp",
+  "file": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/img_reading/stb_image_imp.cpp",
+  "output": "CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj"
 },
 {
   "directory": "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/build/dependencies/GLFW/src",

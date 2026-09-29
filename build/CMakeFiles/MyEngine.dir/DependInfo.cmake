@@ -8,10 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/glad.c" "CMakeFiles/MyEngine.dir/src/glad.c.obj" "gcc" "CMakeFiles/MyEngine.dir/src/glad.c.obj.d"
-  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/Engine_IMP.cpp" "CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj.d"
-  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/main.cpp" "CMakeFiles/MyEngine.dir/src/main.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/main.cpp.obj.d"
-  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/stb_image_imp.cpp" "CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/glad/glad.c" "CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/MainGameCode.cpp" "CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/game_objects.cpp" "CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/img_reading/stb_image_imp.cpp" "CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/main.cpp" "CMakeFiles/MyEngine.dir/src/core/main.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/main.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/shaders.cpp" "CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj.d"
+  "C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/window_and_engine_manager.cpp" "CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj" "gcc" "CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -71,86 +71,137 @@ include CMakeFiles/MyEngine.dir/flags.make
 CMakeFiles/MyEngine.dir/codegen:
 .PHONY : CMakeFiles/MyEngine.dir/codegen
 
-CMakeFiles/MyEngine.dir/src/main.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
-CMakeFiles/MyEngine.dir/src/main.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
-CMakeFiles/MyEngine.dir/src/main.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/main.cpp
-CMakeFiles/MyEngine.dir/src/main.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyEngine.dir/src/main.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/main.cpp.obj -MF CMakeFiles\MyEngine.dir\src\main.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\main.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\main.cpp
+CMakeFiles/MyEngine.dir/src/core/main.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/main.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/main.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/main.cpp
+CMakeFiles/MyEngine.dir/src/core/main.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MyEngine.dir/src/core/main.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/main.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\main.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\main.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\main.cpp
 
-CMakeFiles/MyEngine.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/main.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\main.cpp > CMakeFiles\MyEngine.dir\src\main.cpp.i
+CMakeFiles/MyEngine.dir/src/core/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/main.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\main.cpp > CMakeFiles\MyEngine.dir\src\core\main.cpp.i
 
-CMakeFiles/MyEngine.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/main.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\main.cpp -o CMakeFiles\MyEngine.dir\src\main.cpp.s
+CMakeFiles/MyEngine.dir/src/core/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/main.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\main.cpp -o CMakeFiles\MyEngine.dir\src\core\main.cpp.s
 
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/Engine_IMP.cpp
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj -MF CMakeFiles\MyEngine.dir\src\Engine_IMP.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\Engine_IMP.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\Engine_IMP.cpp
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/shaders.cpp
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\shaders.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\shaders.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\shaders.cpp
 
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\Engine_IMP.cpp > CMakeFiles\MyEngine.dir\src\Engine_IMP.cpp.i
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/shaders.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\shaders.cpp > CMakeFiles\MyEngine.dir\src\core\shaders.cpp.i
 
-CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\Engine_IMP.cpp -o CMakeFiles\MyEngine.dir\src\Engine_IMP.cpp.s
+CMakeFiles/MyEngine.dir/src/core/shaders.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/shaders.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\shaders.cpp -o CMakeFiles\MyEngine.dir\src\core\shaders.cpp.s
 
-CMakeFiles/MyEngine.dir/src/glad.c.obj: CMakeFiles/MyEngine.dir/flags.make
-CMakeFiles/MyEngine.dir/src/glad.c.obj: CMakeFiles/MyEngine.dir/includes_C.rsp
-CMakeFiles/MyEngine.dir/src/glad.c.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/glad.c
-CMakeFiles/MyEngine.dir/src/glad.c.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/MyEngine.dir/src/glad.c.obj"
-	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/glad.c.obj -MF CMakeFiles\MyEngine.dir\src\glad.c.obj.d -o CMakeFiles\MyEngine.dir\src\glad.c.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\glad.c
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/game_objects.cpp
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\game_objects.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\game_objects.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\game_objects.cpp
 
-CMakeFiles/MyEngine.dir/src/glad.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/MyEngine.dir/src/glad.c.i"
-	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\glad.c > CMakeFiles\MyEngine.dir\src\glad.c.i
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\game_objects.cpp > CMakeFiles\MyEngine.dir\src\core\game_objects.cpp.i
 
-CMakeFiles/MyEngine.dir/src/glad.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/MyEngine.dir/src/glad.c.s"
-	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\glad.c -o CMakeFiles\MyEngine.dir\src\glad.c.s
+CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\game_objects.cpp -o CMakeFiles\MyEngine.dir\src\core\game_objects.cpp.s
 
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/stb_image_imp.cpp
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj -MF CMakeFiles\MyEngine.dir\src\stb_image_imp.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\stb_image_imp.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\stb_image_imp.cpp
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj: CMakeFiles/MyEngine.dir/includes_C.rsp
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/glad/glad.c
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj -MF CMakeFiles\MyEngine.dir\src\core\linked_libraries\glad\glad.c.obj.d -o CMakeFiles\MyEngine.dir\src\core\linked_libraries\glad\glad.c.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\glad\glad.c
 
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\stb_image_imp.cpp > CMakeFiles\MyEngine.dir\src\stb_image_imp.cpp.i
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.i"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\glad\glad.c > CMakeFiles\MyEngine.dir\src\core\linked_libraries\glad\glad.c.i
 
-CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\stb_image_imp.cpp -o CMakeFiles\MyEngine.dir\src\stb_image_imp.cpp.s
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.s"
+	C:\msys64\ucrt64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\glad\glad.c -o CMakeFiles\MyEngine.dir\src\core\linked_libraries\glad\glad.c.s
+
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/window_and_engine_manager.cpp
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\window_and_engine_manager.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\window_and_engine_manager.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\window_and_engine_manager.cpp
+
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\window_and_engine_manager.cpp > CMakeFiles\MyEngine.dir\src\core\window_and_engine_manager.cpp.i
+
+CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\window_and_engine_manager.cpp -o CMakeFiles\MyEngine.dir\src\core\window_and_engine_manager.cpp.s
+
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/MainGameCode.cpp
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\MainGameCode.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\MainGameCode.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\MainGameCode.cpp
+
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\MainGameCode.cpp > CMakeFiles\MyEngine.dir\src\core\MainGameCode.cpp.i
+
+CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\MainGameCode.cpp -o CMakeFiles\MyEngine.dir\src\core\MainGameCode.cpp.s
+
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/flags.make
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/includes_CXX.rsp
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj: C:/Users/Lampa/Documents/ProjectssC++/OpenGLEngine/OpenGL-Engine/src/core/linked_libraries/img_reading/stb_image_imp.cpp
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj: CMakeFiles/MyEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj -MF CMakeFiles\MyEngine.dir\src\core\linked_libraries\img_reading\stb_image_imp.cpp.obj.d -o CMakeFiles\MyEngine.dir\src\core\linked_libraries\img_reading\stb_image_imp.cpp.obj -c C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\img_reading\stb_image_imp.cpp
+
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\img_reading\stb_image_imp.cpp > CMakeFiles\MyEngine.dir\src\core\linked_libraries\img_reading\stb_image_imp.cpp.i
+
+CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\src\core\linked_libraries\img_reading\stb_image_imp.cpp -o CMakeFiles\MyEngine.dir\src\core\linked_libraries\img_reading\stb_image_imp.cpp.s
 
 # Object files for target MyEngine
 MyEngine_OBJECTS = \
-"CMakeFiles/MyEngine.dir/src/main.cpp.obj" \
-"CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj" \
-"CMakeFiles/MyEngine.dir/src/glad.c.obj" \
-"CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj"
+"CMakeFiles/MyEngine.dir/src/core/main.cpp.obj" \
+"CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj" \
+"CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj" \
+"CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj" \
+"CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj" \
+"CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj" \
+"CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj"
 
 # External object files for target MyEngine
 MyEngine_EXTERNAL_OBJECTS =
 
-MyEngine.exe: CMakeFiles/MyEngine.dir/src/main.cpp.obj
-MyEngine.exe: CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj
-MyEngine.exe: CMakeFiles/MyEngine.dir/src/glad.c.obj
-MyEngine.exe: CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/main.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj
+MyEngine.exe: CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj
 MyEngine.exe: CMakeFiles/MyEngine.dir/build.make
 MyEngine.exe: dependencies/GLFW/src/libglfw3.a
 MyEngine.exe: CMakeFiles/MyEngine.dir/linkLibs.rsp
 MyEngine.exe: CMakeFiles/MyEngine.dir/objects1.rsp
 MyEngine.exe: CMakeFiles/MyEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable MyEngine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Lampa\Documents\ProjectssC++\OpenGLEngine\OpenGL-Engine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable MyEngine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MyEngine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

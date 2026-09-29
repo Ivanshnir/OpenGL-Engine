@@ -212,101 +212,173 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f dependencies\GLFW\src\CMakeFiles\update_mappings.dir\build.make dependencies/GLFW/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
-src/Engine_IMP.obj: src/Engine_IMP.cpp.obj
-.PHONY : src/Engine_IMP.obj
+src/core/MainGameCode.obj: src/core/MainGameCode.cpp.obj
+.PHONY : src/core/MainGameCode.obj
 
 # target to build an object file
-src/Engine_IMP.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.obj
-.PHONY : src/Engine_IMP.cpp.obj
+src/core/MainGameCode.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.obj
+.PHONY : src/core/MainGameCode.cpp.obj
 
-src/Engine_IMP.i: src/Engine_IMP.cpp.i
-.PHONY : src/Engine_IMP.i
+src/core/MainGameCode.i: src/core/MainGameCode.cpp.i
+.PHONY : src/core/MainGameCode.i
 
 # target to preprocess a source file
-src/Engine_IMP.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.i
-.PHONY : src/Engine_IMP.cpp.i
+src/core/MainGameCode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.i
+.PHONY : src/core/MainGameCode.cpp.i
 
-src/Engine_IMP.s: src/Engine_IMP.cpp.s
-.PHONY : src/Engine_IMP.s
+src/core/MainGameCode.s: src/core/MainGameCode.cpp.s
+.PHONY : src/core/MainGameCode.s
 
 # target to generate assembly for a file
-src/Engine_IMP.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/Engine_IMP.cpp.s
-.PHONY : src/Engine_IMP.cpp.s
+src/core/MainGameCode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/MainGameCode.cpp.s
+.PHONY : src/core/MainGameCode.cpp.s
 
-src/glad.obj: src/glad.c.obj
-.PHONY : src/glad.obj
+src/core/game_objects.obj: src/core/game_objects.cpp.obj
+.PHONY : src/core/game_objects.obj
 
 # target to build an object file
-src/glad.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/glad.c.obj
-.PHONY : src/glad.c.obj
+src/core/game_objects.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.obj
+.PHONY : src/core/game_objects.cpp.obj
 
-src/glad.i: src/glad.c.i
-.PHONY : src/glad.i
+src/core/game_objects.i: src/core/game_objects.cpp.i
+.PHONY : src/core/game_objects.i
 
 # target to preprocess a source file
-src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/glad.c.i
-.PHONY : src/glad.c.i
+src/core/game_objects.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.i
+.PHONY : src/core/game_objects.cpp.i
 
-src/glad.s: src/glad.c.s
-.PHONY : src/glad.s
+src/core/game_objects.s: src/core/game_objects.cpp.s
+.PHONY : src/core/game_objects.s
 
 # target to generate assembly for a file
-src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/glad.c.s
-.PHONY : src/glad.c.s
+src/core/game_objects.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/game_objects.cpp.s
+.PHONY : src/core/game_objects.cpp.s
 
-src/main.obj: src/main.cpp.obj
-.PHONY : src/main.obj
+src/core/linked_libraries/glad/glad.obj: src/core/linked_libraries/glad/glad.c.obj
+.PHONY : src/core/linked_libraries/glad/glad.obj
 
 # target to build an object file
-src/main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/main.cpp.obj
-.PHONY : src/main.cpp.obj
+src/core/linked_libraries/glad/glad.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.obj
+.PHONY : src/core/linked_libraries/glad/glad.c.obj
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/core/linked_libraries/glad/glad.i: src/core/linked_libraries/glad/glad.c.i
+.PHONY : src/core/linked_libraries/glad/glad.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/core/linked_libraries/glad/glad.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.i
+.PHONY : src/core/linked_libraries/glad/glad.c.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/core/linked_libraries/glad/glad.s: src/core/linked_libraries/glad/glad.c.s
+.PHONY : src/core/linked_libraries/glad/glad.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/core/linked_libraries/glad/glad.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/glad/glad.c.s
+.PHONY : src/core/linked_libraries/glad/glad.c.s
 
-src/stb_image_imp.obj: src/stb_image_imp.cpp.obj
-.PHONY : src/stb_image_imp.obj
+src/core/linked_libraries/img_reading/stb_image_imp.obj: src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.obj
 
 # target to build an object file
-src/stb_image_imp.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.obj
-.PHONY : src/stb_image_imp.cpp.obj
+src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.cpp.obj
 
-src/stb_image_imp.i: src/stb_image_imp.cpp.i
-.PHONY : src/stb_image_imp.i
+src/core/linked_libraries/img_reading/stb_image_imp.i: src/core/linked_libraries/img_reading/stb_image_imp.cpp.i
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.i
 
 # target to preprocess a source file
-src/stb_image_imp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.i
-.PHONY : src/stb_image_imp.cpp.i
+src/core/linked_libraries/img_reading/stb_image_imp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.i
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.cpp.i
 
-src/stb_image_imp.s: src/stb_image_imp.cpp.s
-.PHONY : src/stb_image_imp.s
+src/core/linked_libraries/img_reading/stb_image_imp.s: src/core/linked_libraries/img_reading/stb_image_imp.cpp.s
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.s
 
 # target to generate assembly for a file
-src/stb_image_imp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/stb_image_imp.cpp.s
-.PHONY : src/stb_image_imp.cpp.s
+src/core/linked_libraries/img_reading/stb_image_imp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/linked_libraries/img_reading/stb_image_imp.cpp.s
+.PHONY : src/core/linked_libraries/img_reading/stb_image_imp.cpp.s
+
+src/core/main.obj: src/core/main.cpp.obj
+.PHONY : src/core/main.obj
+
+# target to build an object file
+src/core/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/main.cpp.obj
+.PHONY : src/core/main.cpp.obj
+
+src/core/main.i: src/core/main.cpp.i
+.PHONY : src/core/main.i
+
+# target to preprocess a source file
+src/core/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/main.cpp.i
+.PHONY : src/core/main.cpp.i
+
+src/core/main.s: src/core/main.cpp.s
+.PHONY : src/core/main.s
+
+# target to generate assembly for a file
+src/core/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/main.cpp.s
+.PHONY : src/core/main.cpp.s
+
+src/core/shaders.obj: src/core/shaders.cpp.obj
+.PHONY : src/core/shaders.obj
+
+# target to build an object file
+src/core/shaders.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/shaders.cpp.obj
+.PHONY : src/core/shaders.cpp.obj
+
+src/core/shaders.i: src/core/shaders.cpp.i
+.PHONY : src/core/shaders.i
+
+# target to preprocess a source file
+src/core/shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/shaders.cpp.i
+.PHONY : src/core/shaders.cpp.i
+
+src/core/shaders.s: src/core/shaders.cpp.s
+.PHONY : src/core/shaders.s
+
+# target to generate assembly for a file
+src/core/shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/shaders.cpp.s
+.PHONY : src/core/shaders.cpp.s
+
+src/core/window_and_engine_manager.obj: src/core/window_and_engine_manager.cpp.obj
+.PHONY : src/core/window_and_engine_manager.obj
+
+# target to build an object file
+src/core/window_and_engine_manager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.obj
+.PHONY : src/core/window_and_engine_manager.cpp.obj
+
+src/core/window_and_engine_manager.i: src/core/window_and_engine_manager.cpp.i
+.PHONY : src/core/window_and_engine_manager.i
+
+# target to preprocess a source file
+src/core/window_and_engine_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.i
+.PHONY : src/core/window_and_engine_manager.cpp.i
+
+src/core/window_and_engine_manager.s: src/core/window_and_engine_manager.cpp.s
+.PHONY : src/core/window_and_engine_manager.s
+
+# target to generate assembly for a file
+src/core/window_and_engine_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyEngine.dir\build.make CMakeFiles/MyEngine.dir/src/core/window_and_engine_manager.cpp.s
+.PHONY : src/core/window_and_engine_manager.cpp.s
 
 # Help Target
 help:
@@ -324,18 +396,27 @@ help:
 	@echo ... update_mappings
 	@echo ... MyEngine
 	@echo ... glfw
-	@echo ... src/Engine_IMP.obj
-	@echo ... src/Engine_IMP.i
-	@echo ... src/Engine_IMP.s
-	@echo ... src/glad.obj
-	@echo ... src/glad.i
-	@echo ... src/glad.s
-	@echo ... src/main.obj
-	@echo ... src/main.i
-	@echo ... src/main.s
-	@echo ... src/stb_image_imp.obj
-	@echo ... src/stb_image_imp.i
-	@echo ... src/stb_image_imp.s
+	@echo ... src/core/MainGameCode.obj
+	@echo ... src/core/MainGameCode.i
+	@echo ... src/core/MainGameCode.s
+	@echo ... src/core/game_objects.obj
+	@echo ... src/core/game_objects.i
+	@echo ... src/core/game_objects.s
+	@echo ... src/core/linked_libraries/glad/glad.obj
+	@echo ... src/core/linked_libraries/glad/glad.i
+	@echo ... src/core/linked_libraries/glad/glad.s
+	@echo ... src/core/linked_libraries/img_reading/stb_image_imp.obj
+	@echo ... src/core/linked_libraries/img_reading/stb_image_imp.i
+	@echo ... src/core/linked_libraries/img_reading/stb_image_imp.s
+	@echo ... src/core/main.obj
+	@echo ... src/core/main.i
+	@echo ... src/core/main.s
+	@echo ... src/core/shaders.obj
+	@echo ... src/core/shaders.i
+	@echo ... src/core/shaders.s
+	@echo ... src/core/window_and_engine_manager.obj
+	@echo ... src/core/window_and_engine_manager.i
+	@echo ... src/core/window_and_engine_manager.s
 .PHONY : help
 
 

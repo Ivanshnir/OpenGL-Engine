@@ -6,10 +6,13 @@ find_package(OpenGL REQUIRED)
 add_subdirectory(dependencies/GLFW)
 
 add_executable(MyEngine 
-    src/main.cpp
-    src/Engine_IMP.cpp
-    src/glad.c
-    src/stb_image_imp.cpp
+    src/core/main.cpp
+    src/core/shaders.cpp
+    src/core/game_objects.cpp
+    src/core/linked_libraries/glad/glad.c
+    src/core/window_and_engine_manager.cpp
+    src/core/MainGameCode.cpp
+    src/core/linked_libraries/img_reading/stb_image_imp.cpp
     ) 
 
 target_include_directories(MyEngine PRIVATE

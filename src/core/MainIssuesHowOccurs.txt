@@ -1,0 +1,1 @@
+During Debugging after second calling _shader_read crashed window? - Be sure you are not initialize something from game objects in global, initialize that in the start  
