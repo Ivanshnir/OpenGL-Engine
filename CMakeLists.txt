@@ -4,11 +4,12 @@ find_package(OpenGL REQUIRED)
 
 # Build the GLFW copy stored in this project.
 add_subdirectory(dependencies/GLFW)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmacro-prefix-map=${CMAKE_SOURCE_DIR}/=")
 add_executable(MyEngine 
     src/core/main.cpp
-    src/core/shaders.cpp
-    src/core/game_objects.cpp
+    src/core/Debugger/debug.cpp
+    src/modules/Shader/Shader.cpp
+    src/modules/GameObject/GameObject.cpp
     src/core/linked_libraries/glad/glad.c
     src/core/window_and_engine_manager.cpp
     src/core/MainGameCode.cpp

@@ -48,9 +48,13 @@ void setup(GLFWwindow * window){
     #ifdef DEBUG_MODE
     DEBUG_START_FUNC();
     #endif
+    float previous_frame = (float)glfwGetTime();
     stbi_set_flip_vertically_on_load(true);
     Start();
+    
     while(!glfwWindowShouldClose(window)){
+        deltaTime = previous_frame - (float)glfwGetTime();
+        previous_frame = (float)glfwGetTime();
         frame_process_window(window);
         Update();
         #ifdef DEBUG_MODE
@@ -58,7 +62,6 @@ void setup(GLFWwindow * window){
         #endif
         for(long i = 0; i < GameObject::ptrs_links.size(); i++){
             (*GameObject::ptrs_links[i]).Show();
-            std::cout << std::endl << (*GameObject::ptrs_links[i]) << std::endl;
         }
         #ifdef DEBUG_MODE
         DEBUG_END_FUNC();

@@ -1,14 +1,10 @@
-#include "engine_core.h"
-
+#include "Shader.hpp"
 const unsigned int Shader::ID() const{
     return *current_shader_programm;
 }
 
 // Setting vars into shaders
 void Shader::SetMat4(const std::string &name, const void * value, const UniformType type, GLboolean Transpose){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     int Mat4Loc = glGetUniformLocation(ID(), name.c_str()); 
     switch (type)
     {
@@ -19,19 +15,12 @@ void Shader::SetMat4(const std::string &name, const void * value, const UniformT
             glUniformMatrix4dv(Mat4Loc, 1, Transpose, static_cast<const GLdouble*>(value));
             break;
         default:
-            DEBUG_WARN("NOTHING CHOOSE");
+            LOG("Type of matrix unknown", WARN);
             break;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 
 void Shader::SetVar(const std::string  &name, const void * value, const UniformType type){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
-
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -49,18 +38,12 @@ void Shader::SetVar(const std::string  &name, const void * value, const UniformT
             break;
         
         default:
-            DEBUG_WARN("NOTHING CHOOSE");
+            LOG("Type of var unknown", WARN);
             break;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 
 void Shader::SetVec4(const std::string  &name, const void * value, const UniformType type){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -78,17 +61,11 @@ void Shader::SetVec4(const std::string  &name, const void * value, const Uniform
             break;
         
         default:
-            DEBUG_WARN("NOTHING CHOOSE");
+            LOG("Type of vec4 unknown", WARN);
             break;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 void Shader::SetVec3(const std::string  &name, const void * value, const UniformType type){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -106,17 +83,11 @@ void Shader::SetVec3(const std::string  &name, const void * value, const Uniform
             break;
         
         default:
-            DEBUG_WARN("NOTHING CHOOSE");
+            LOG("Type of vec2 unknown", WARN);
             break;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 void Shader::SetVec2(const std::string  &name, const void * value, const UniformType type){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -134,34 +105,23 @@ void Shader::SetVec2(const std::string  &name, const void * value, const Uniform
             break;
         
         default:
-            DEBUG_WARN("NOTHING CHOOSE");
+            LOG("Type of vec2 unknown", WARN);
             break;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 // private work functions 
 const std::string Shader::_shader_read(const std::string & path){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     std::fstream file(path);
     if(!file.is_open()){
+        LOG("file not opens", WARN);
         return "";
     }
     std::string Shader_Data;
     getline(file, Shader_Data, '\0');
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
     return Shader_Data;
 }
 
 const std::string * Shader::_shader_compile_log(unsigned int id, const char * const settings_data){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     int success; 
     char info_log[512];
     glShaderSource(id, 1, &settings_data, NULL);
@@ -169,24 +129,18 @@ const std::string * Shader::_shader_compile_log(unsigned int id, const char * co
     glGetShaderiv(id, GL_COMPILE_STATUS, &success);
     if(!success){
         glGetShaderInfoLog(id, 512, NULL, info_log);
-        std::string * buffer = new std::string(SHADER_COMPILE_ENTIRE_ADDITION + std::string(info_log)); // Pointer which can leak if not clean
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(std::string(info_log));
-        #endif
+
+        std::string * buffer = new std::string(std::string(info_log)); // Pointer which can leak if not clean
+        LOG(info_log, FATAL);
         return buffer;
     }
     else {
-        #ifdef DEBUG_MODE
-        DEBUG_END_FUNC();
-        #endif
+
         return nullptr;
     }
 
 }
 const std::string * Shader::_shader_link(const unsigned int shaders[], const unsigned int shader_program){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     for(int i = 0; i < 2; i++){
         glAttachShader(shader_program, shaders[i]);
     }
@@ -199,36 +153,22 @@ const std::string * Shader::_shader_link(const unsigned int shaders[], const uns
     glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
     if(!success){
         glGetProgramInfoLog(shader_program, 512, NULL, info_log);
-        std::string * buffer = new std::string(SHADER_LINK_ERROR + std::string(info_log));
-        #ifdef DEBUG_MODE
-        DEBUG_WARN("shader_link returns log");
-        #endif
+        std::string * buffer = new std::string(std::string(info_log));
+        LOG(info_log, FATAL);
         return buffer; // Pointer which can leak if not clean
     }else{
-        #ifdef DEBUG_MODE
-        DEBUG_END_FUNC();
-        #endif
+
         return nullptr;
     }
 }
 Shader::Shader(const std::string & vertext_shader_path, const std::string & fragment_shader_path) {
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
-
     Shader::ptrs_links.push_back(this);
-    #ifdef DEBUG_MODE
-    DEBUG_INFO("Shader pool pushed for 1 element, now capacity - " << Shader::ptrs_links.capacity() << ", added address - " << this);
-    #endif
     debug_message = "";
     current_shader_programm = nullptr;
     const std::string vertices_setting_data = _shader_read(vertext_shader_path);
     const std::string fragment_setting_data = _shader_read(fragment_shader_path);
     if(vertices_setting_data == "" || fragment_setting_data == ""){
-        debug_message += SHADER_READ_ERROR;
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(SHADER_READ_ERROR);
-        #endif
+        LOG("Shaders didnt read", FATAL);
         return;
     } 
     unsigned int vertexShader;
@@ -236,10 +176,7 @@ Shader::Shader(const std::string & vertext_shader_path, const std::string & frag
     bool mini_check = false;
     const std::string * res_vert = _shader_compile_log(vertexShader, vertices_setting_data.c_str());
     if(res_vert != nullptr){
-        debug_message += "\n[VERTEX SHADER]" + *res_vert + "\n";
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(*res_vert);
-        #endif
+        LOG("Compilation vertex shader failed", FATAL);
         mini_check = true;
     }
     delete res_vert;
@@ -247,10 +184,7 @@ Shader::Shader(const std::string & vertext_shader_path, const std::string & frag
     fragShader = glCreateShader(GL_FRAGMENT_SHADER);
     const std::string * res_frag = _shader_compile_log(fragShader, fragment_setting_data.c_str());
     if(res_frag != nullptr){
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(*res_frag);
-        #endif
-        debug_message += "\n[FRAGMENT SHADER]" + *res_frag + "\n";
+        LOG("Compilation fragment shader failed", FATAL);
         glDeleteShader(vertexShader);
         delete res_frag;
         return; 
@@ -270,50 +204,32 @@ Shader::Shader(const std::string & vertext_shader_path, const std::string & frag
         delete res_apply;
         delete current_shader_programm;
         current_shader_programm = nullptr;
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(*res_apply);
-        #endif
+        LOG("Linking shaders fails "+*res_apply, FATAL);
         return;
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
+    LOG("Shader - "+std::to_string(ID())+" was created succesfull", INFO);
 }
 Shader::~Shader(){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     if(current_shader_programm != nullptr){
+        LOG("Shader - "+std::to_string(ID())+" will be deleted", INFO);
         glDeleteProgram(*current_shader_programm);
     }
     auto it = std::find(Shader::ptrs_links.begin(), Shader::ptrs_links.end(),   this);
     if(it != Shader::ptrs_links.end()){
-        #ifdef DEBUG_MODE
-        DEBUG_INFO("Shader pool removed for 1 element, now capacity - " << Shader::ptrs_links.capacity()-1 << ", removed address - " << this);
-        #endif
+        LOG("ptrs_links erased by 1, now size - "+std::to_string(Shader::ptrs_links.size()), INFO);
         Shader::ptrs_links.erase(it);
         
     }
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 bool Shader::use_shader(){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     if(current_shader_programm != nullptr){
         glUseProgram(*current_shader_programm);
-        #ifdef DEBUG_MODE
-        DEBUG_END_FUNC();
-        #endif
+
         return true;
     }
     else{
-        debug_message += SHADER_USING_FAIL;
-        #ifdef DEBUG_MODE
-        DEBUG_WARN(SHADER_USING_FAIL);
-        #endif
+        LOG("Failed current_shader_programm == nullptr", FATAL);
+
         return false;
     }
     

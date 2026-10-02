@@ -4,7 +4,7 @@
 #define HEIGHT 640
 #define WIDTH 500
 #define NAME "My_Engine0.0.1"
-
+#include "Debugger\debug.hpp"
 #define TEXTURE1_PATH "./src/textures/awesomeface.png"
 #define TEXTURE2_PATH "./src/textures/container.jpg"
 #define SHADER_VERTEX_PATH "./src/shaders/Vertex_Shader_WoutT.glsl"
@@ -14,7 +14,9 @@ void LearnMatrices(Shader * ourShader);
 std::vector <GameObject*> GameObject::ptrs_links;
 std::vector <Shader*> Shader::ptrs_links;
 int main(){
-    
+    if(!logger::init("log.txt"))
+        return -1;
+    LOG("Start", TRACE);
     GLFWwindow * window = window_creating(HEIGHT, WIDTH, NAME);
     setup(window);
 
