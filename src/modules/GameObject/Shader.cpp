@@ -1,10 +1,18 @@
-#include "Shader.hpp"
+#include "GameObject.hpp"
+#include "../../core/Debugger/debug.hpp"
+#include <algorithm>
+
 const unsigned int Shader::ID() const{
     return *current_shader_programm;
-}
+} 
 
 // Setting vars into shaders
 void Shader::SetMat4(const std::string &name, const void * value, const UniformType type, GLboolean Transpose){
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return;
+    }
+        
     int Mat4Loc = glGetUniformLocation(ID(), name.c_str()); 
     switch (type)
     {
@@ -21,6 +29,10 @@ void Shader::SetMat4(const std::string &name, const void * value, const UniformT
 }
 
 void Shader::SetVar(const std::string  &name, const void * value, const UniformType type){
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return;
+    }
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -44,6 +56,10 @@ void Shader::SetVar(const std::string  &name, const void * value, const UniformT
 }
 
 void Shader::SetVec4(const std::string  &name, const void * value, const UniformType type){
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return;
+    }
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -66,6 +82,10 @@ void Shader::SetVec4(const std::string  &name, const void * value, const Uniform
     }
 }
 void Shader::SetVec3(const std::string  &name, const void * value, const UniformType type){
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return;
+    }
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -88,6 +108,10 @@ void Shader::SetVec3(const std::string  &name, const void * value, const Uniform
     }
 }
 void Shader::SetVec2(const std::string  &name, const void * value, const UniformType type){
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return;
+    }
     int Loc = glGetUniformLocation(ID(), name.c_str());
     switch (type)
     {
@@ -111,6 +135,7 @@ void Shader::SetVec2(const std::string  &name, const void * value, const Uniform
 }
 // private work functions 
 const std::string Shader::_shader_read(const std::string & path){
+    LOG("", TRACE);
     std::fstream file(path);
     if(!file.is_open()){
         LOG("file not opens", WARN);
@@ -121,7 +146,7 @@ const std::string Shader::_shader_read(const std::string & path){
     return Shader_Data;
 }
 
-const std::string * Shader::_shader_compile_log(unsigned int id, const char * const settings_data){
+bool Shader::_shader_compile_log(unsigned int id, const char * const settings_data){
     int success; 
     char info_log[512];
     glShaderSource(id, 1, &settings_data, NULL);
@@ -129,18 +154,16 @@ const std::string * Shader::_shader_compile_log(unsigned int id, const char * co
     glGetShaderiv(id, GL_COMPILE_STATUS, &success);
     if(!success){
         glGetShaderInfoLog(id, 512, NULL, info_log);
-
-        std::string * buffer = new std::string(std::string(info_log)); // Pointer which can leak if not clean
         LOG(info_log, FATAL);
-        return buffer;
+        return false;
     }
     else {
 
-        return nullptr;
+        return true;
     }
 
 }
-const std::string * Shader::_shader_link(const unsigned int shaders[], const unsigned int shader_program){
+bool Shader::_shader_link(const unsigned int shaders[], const unsigned int shader_program){
     for(int i = 0; i < 2; i++){
         glAttachShader(shader_program, shaders[i]);
     }
@@ -153,16 +176,15 @@ const std::string * Shader::_shader_link(const unsigned int shaders[], const uns
     glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
     if(!success){
         glGetProgramInfoLog(shader_program, 512, NULL, info_log);
-        std::string * buffer = new std::string(std::string(info_log));
         LOG(info_log, FATAL);
-        return buffer; // Pointer which can leak if not clean
+        return false; // Pointer which can leak if not clean
     }else{
 
-        return nullptr;
+        return true;
     }
 }
-Shader::Shader(const std::string & vertext_shader_path, const std::string & fragment_shader_path) {
-    Shader::ptrs_links.push_back(this);
+
+Shader::Shader(const std::string & vertext_shader_path, const std::string & fragment_shader_path){
     debug_message = "";
     current_shader_programm = nullptr;
     const std::string vertices_setting_data = _shader_read(vertext_shader_path);
@@ -172,59 +194,55 @@ Shader::Shader(const std::string & vertext_shader_path, const std::string & frag
         return;
     } 
     unsigned int vertexShader;
+    unsigned int fragShader;
+    bool isError = false;
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     bool mini_check = false;
-    const std::string * res_vert = _shader_compile_log(vertexShader, vertices_setting_data.c_str());
-    if(res_vert != nullptr){
-        LOG("Compilation vertex shader failed", FATAL);
-        mini_check = true;
-    }
-    delete res_vert;
-    unsigned int fragShader;
-    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-    const std::string * res_frag = _shader_compile_log(fragShader, fragment_setting_data.c_str());
-    if(res_frag != nullptr){
-        LOG("Compilation fragment shader failed", FATAL);
-        glDeleteShader(vertexShader);
-        delete res_frag;
-        return; 
-    }
-    else if(mini_check){
-        delete res_frag;
-        return;
-    }
-    delete res_frag;
-    unsigned int AllShaders[2] = {vertexShader, fragShader};
-    current_shader_programm = new unsigned int;
-    *current_shader_programm = glCreateProgram();
     
-    const std::string * res_apply = _shader_link(AllShaders, *current_shader_programm);
-    if(res_apply != nullptr){
-        debug_message = *res_apply + '\n';
-        delete res_apply;
-        delete current_shader_programm;
-        current_shader_programm = nullptr;
-        LOG("Linking shaders fails "+*res_apply, FATAL);
-        return;
+    if(!(_shader_compile_log(vertexShader, vertices_setting_data.c_str()))){
+        isError = true;
+        LOG("Shaders compile vertex issue", FATAL);
     }
-    LOG("Shader - "+std::to_string(ID())+" was created succesfull", INFO);
+    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    if(!(_shader_compile_log(fragShader, fragment_setting_data.c_str()))){
+        glDeleteShader(vertexShader);
+        isError = true;
+        LOG("Shaders compile Frag issue", FATAL);
+    }
+    auto func = [=](){
+        current_shader_programm = new unsigned int;
+        *current_shader_programm = glCreateProgram();
+        unsigned int AllShaders[2] = {vertexShader, fragShader};
+        if(!(_shader_link(AllShaders, *current_shader_programm))){
+            delete current_shader_programm;
+            current_shader_programm = nullptr;
+            LOG("Shaders link issue", FATAL);
+            return true;
+        }else{
+            return false;
+        }
+    };
+    if(!isError)
+        isError = func();
+    if(!isError)
+        LOG("Shader - was created succesfull", INFO);
+    canBeUsed = true;
+    return;
 }
 Shader::~Shader(){
     if(current_shader_programm != nullptr){
-        LOG("Shader - "+std::to_string(ID())+" will be deleted", INFO);
+        LOG("Shader -  will be deleted", INFO);
         glDeleteProgram(*current_shader_programm);
     }
-    auto it = std::find(Shader::ptrs_links.begin(), Shader::ptrs_links.end(),   this);
-    if(it != Shader::ptrs_links.end()){
-        LOG("ptrs_links erased by 1, now size - "+std::to_string(Shader::ptrs_links.size()), INFO);
-        Shader::ptrs_links.erase(it);
-        
-    }
+    canBeUsed = false;
 }
-bool Shader::use_shader(){
+bool Shader::attach_shader(){
+    if(!canBeUsed){
+        LOG("Shader can`t be attached", FATAL);
+        return false;
+    }
     if(current_shader_programm != nullptr){
         glUseProgram(*current_shader_programm);
-
         return true;
     }
     else{
@@ -235,18 +253,46 @@ bool Shader::use_shader(){
     
 }
 
-std::string Shader::get_debug(){
-    return debug_message;
+
+Shader::operator bool() const{
+    LOG("Check null or not - " << canBeUsed, DEBUG);
+    return canBeUsed;
 }
-
-
 
 //overload operators
 bool Shader::operator==(const Shader & other){
-    if(this->ID() == other.ID()) return true;
-    return false;
+    LOG("Shaer operator == ", DEBUG);
+    if(!canBeUsed){
+        LOG("Shader can`t be used", FATAL);
+        return false;
+    }
+    if(&other != nullptr)
+    {
+        if((*this).ID() == other.ID()) return true;
+        return false;
+    }else{
+        LOG("This Shader compares with nullptr", WARN);
+        return false;
+    }
+    
 }
 bool Shader::operator==(const Shader * other){
-    if(this->ID() == (*other).ID()) return true;
-    return false;
+    if(!canBeUsed){
+        LOG("Shader can`t be used", ERROR);
+        return false;
+    }
+    if(other != nullptr)
+    {
+        if((*this).ID() == (*other).ID()) return true;
+        return false;
+    }else{
+        LOG("This Shader compares with nullptr", WARN);
+        return false;
+    }
+    
+    
 }
+
+
+
+

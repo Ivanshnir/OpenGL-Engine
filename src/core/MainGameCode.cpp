@@ -1,22 +1,24 @@
-#include "../modules/Shader/Shader.hpp"
 #include "../modules/GameObject/GameObject.hpp"
-#include "engine_core.h"
+#include "Window_Manager\window.hpp"
+#include <iostream>
+#include <vector>
 bool check = true;
-const int AMOUNT = 50;
-GameObject * Cubes = nullptr;
-float speed = 20.0f;  
+const int AMOUNT = 20;
+float speed = 20.0f;
+std::vector<GameObject> Cubes = {};
 void Start(){
-    Cubes = new GameObject[AMOUNT];
 }
 void Update(){
+    
     if(check){
+        
         float y_coord = -0.9f;
         float x_coord = -0.9f;
         for(int i = 0; i < AMOUNT; i++){
-            Cubes[i] = GameObject(CUBE);
-            Cubes[i].Translate(Vector3(x_coord, y_coord, 0.0f));
-            Cubes[i].Scale(Vector3(0.2f, 0.2f, 0.2f));
-            std::cout << Cubes[i];
+            Cubes.emplace_back(CUBE);
+            Cubes[i].GetComponent<Transform>().position.x = x_coord;
+            Cubes[i].GetComponent<Transform>().position.y = y_coord;
+            Cubes[i].GetComponent<Transform>().scale = glm::vec3(0.2f, 0.2f, 0.2f);
             x_coord += 0.3f;
             if(x_coord > 1.0f){
                 x_coord = -0.9f;
@@ -25,7 +27,8 @@ void Update(){
         }
         check = false;
     }
+    glm::vec3 calc_degreese = glm::vec3(1.0f, 1.0f, 0.0f)*deltaTime*speed;
     for(int i = 0; i < AMOUNT; i++){
-        Cubes[i].Rotate(Vector3(1.0f, 1.0f, 0.0f)*deltaTime*speed);
+        Cubes[i].GetComponent<Transform>().Rotate(calc_degreese);
     }
 }

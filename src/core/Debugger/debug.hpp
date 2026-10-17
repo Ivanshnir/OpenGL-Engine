@@ -7,24 +7,63 @@
 #include <fstream>
 #include <ctime>
 #include <iostream>
-#define LOG(msg, state) logger::log(state, msg, __LINE__, __FUNCTION__ , __FILE__);
+#include <sstream>
+#include <chrono>
+#define DEBUG_MODE true
 
-#define LOG_LEVEL 4
-// LOG_LEVEL 0 - DISABLE
-// LOG_LEVEL 1 - Only FATAL ERRORS
-// LOG_LEVEL 2 - FATAL ERRORS, WARNS
-// LOG_LEVEL 3 - FATAL ERRORS, WARNS, INFO
-// LOG_LEVEL 4 - FATAL ERRORS, WARNS, TRACE
+
 enum States{
-    TRACE,
     WARN,
     INFO,
-    FATAL
+    ERROR,
+    DEBUG,
+    FATAL,
+    TRACE
 };
 namespace logger{
-    bool init(std::string fileName, int bufferSize = 4096, const bool CMD = false);
+    void closeFile();
+    void writeFile();
+    struct  Tracer
+    {
+
+        std::string msg;
+        int line_;
+        std::string func_name_;
+        std::string file_name_;
+        Tracer(std::string, int, std::string, std::string);
+        ~Tracer();
+        std::chrono::steady_clock::time_point start_time;
+    };
+    
+    bool init(std::string fileName, int bufferSize = 512, const bool CMD = false);
     void log(States state, std::string context,int line, std::string funcName, std::string fileName);
 }
 
+#define LOG_FATAL(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#define LOG_ERROR(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#define LOG_LEVEL 3
+#if LOG_LEVEL >= 1
+    #define LOG_WARN(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#else 
+    #define LOG_WARN(msg, state) {}
+#endif
+#if LOG_LEVEL >= 2
+    #define LOG_INFO(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#else
+    #define LOG_INFO(msg, state) {}
+#endif
+#if LOG_LEVEL >= 3
+    #define LOG_TRACE(msg, state) {std::ostringstream oss{}; oss << msg; logger::Tracer(oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#else
+    #define LOG_TRACE(msg, state) {}
+#endif
+
+#if DEBUG_MODE  
+    #define LOG_DEBUG(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#else
+    #define LOG_DEBUG(msg, state) {}
+#endif
+
+#define LOG(msg, state) LOG_##state(msg, state);
 #endif
 #endif

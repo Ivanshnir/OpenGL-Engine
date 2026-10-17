@@ -1,37 +1,29 @@
-#include "engine_core.h"
-
+#include "window.hpp"
+#include "../../modules/GameObject/GameObject.hpp"
+#include "../Render/render_manager.hpp"
+#include "../linked_libraries/img_reading/stb_image.h"
+#include "..\Debugger\debug.hpp"
 #define BACKGROUND_COLOR 0.2f,0.3f, 0.4f, 1.0f
 GLFWwindow * window_creating(int height, int width, const std::string & name){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     GLFWwindow * window;
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     if(!glfwInit()){
-        std::cout << GLFW_INIT_ERROR;
+        LOG("Failed to init glfw", FATAL);
         return nullptr;
     }
     window = glfwCreateWindow(width, height, name.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(window);
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-        std::cout << GLAD_ATTACHING_ERROR;
+        LOG("Failed to load glad", FATAL);
         return nullptr;
     }
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
+    LOG("Window was created succesfull", INFO);
     return window;
 }
 
 void framebuffer_size_callback(GLFWwindow * window, int width, int height){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     glViewport(0,0, width, height);
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
 void frame_process_window(GLFWwindow * window){
     glClearColor(BACKGROUND_COLOR);
@@ -45,33 +37,27 @@ void texture_attach(){
 
 }
 void setup(GLFWwindow * window){
-    #ifdef DEBUG_MODE
-    DEBUG_START_FUNC();
-    #endif
     float previous_frame = (float)glfwGetTime();
     stbi_set_flip_vertically_on_load(true);
     Start();
-    
+    Render_Manager& rend_mng = Render_Manager::GET();
+    glEnable(GL_DEPTH_TEST);
+    float frame_cap_delay = 1.0f/static_cast<float>(frame_cap);
+    float cap_capacitor = 0.0f;
     while(!glfwWindowShouldClose(window)){
-        deltaTime = previous_frame - (float)glfwGetTime();
+        deltaTime = -(previous_frame - (float)glfwGetTime());
         previous_frame = (float)glfwGetTime();
-        frame_process_window(window);
-        Update();
-        #ifdef DEBUG_MODE
-        DEBUG_START_FUNC();
-        #endif
-        for(long i = 0; i < GameObject::ptrs_links.size(); i++){
-            (*GameObject::ptrs_links[i]).Show();
+        cap_capacitor += deltaTime;
+        if(cap_capacitor > frame_cap_delay){
+            deltaTime = cap_capacitor;
+            cap_capacitor = 0.0f;
+            frame_process_window(window);
+            rend_mng.FrameRender();
+            Update();
+            glfwSwapBuffers(window);
+            glfwPollEvents();  
         }
-        #ifdef DEBUG_MODE
-        DEBUG_END_FUNC();
-        #endif
-        
-        glfwSwapBuffers(window);
-        glfwPollEvents();  
     }
+    rend_mng.RemoveAll();
     glfwTerminate();
-    #ifdef DEBUG_MODE
-    DEBUG_END_FUNC();
-    #endif
 }
