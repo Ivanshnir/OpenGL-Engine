@@ -1,63 +1,25 @@
-#define HEIGHT 640
-#define WIDTH 500
+
 #include <vector>
 #include "../modules/GameObject/GameObject.hpp"
 #include "Window_Manager\window.hpp"
-#define NAME "My_Engine0.0.1"
+#define NAME "My_Engine0.1.2"
 #include "Debugger\debug.hpp"
 #define TEXTURE1_PATH "./src/textures/awesomeface.png"
 #define TEXTURE2_PATH "./src/textures/container.jpg"
 #define SHADER_VERTEX_PATH "./src/shaders/Vertex_Shader_WoutT.glsl"
 #define SHADER_FRAGMENT_PATH "./src/shaders/Fragment_Shader_WoutT.glsl"
+#include <filesystem>
 int main(){
     if(!logger::init("log.ansi", 8192)){
-        std::cout << "Not opens log";
+        std::cout << "Not opens log\n";
+        std::cerr << "Working directory: "
+          << std::filesystem::current_path() << '\n';
         return -1;
     }
     LOG("Log initialized and main starts", INFO);
-    GLFWwindow * window = window_creating(HEIGHT, WIDTH, NAME);
-    setup(window);
+    Window& myWindow = Window::Create_Window(HEIGHT, WIDTH, NAME);
+    myWindow.setup();
     logger::closeFile();
-    
-    // glUniform1i(glGetUniformLocation(my_mini_shader.ID(), "texture1"), 0);
-    // glUniform1i(glGetUniformLocation(my_mini_shader.ID(), "texture2"), 1);
-
-
-    //     float my_angle;
-    //     if(window == nullptr) return -1;
-    //     float comp = 20.0f;
-    //     float comp_factor = 0.03f; 
-        
-    //     unsigned int i = 0;
-
-    //     float step1 = 0.001f;
-    //     bool check1 = false;
-    //     while(!glfwWindowShouldClose(window))
-    //     {
-            // glClearColor(0.2f,0.3f, 0.4f, 1.0f);
-            // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //         // glActiveTexture(GL_TEXTURE0);
-    //         // glBindTexture(GL_TEXTURE_2D, *texture);
-    //         // glActiveTexture(GL_TEXTURE1);
-    //         // glBindTexture(GL_TEXTURE_2D, *(texture+1));
-    //         if(!my_mini_shader.use_shader()) {
-    //             std::cout << my_mini_shader.get_debug();
-    //             return -1;
-    //         }   
-    //         // for(int i = 0; i < std::size(MyCubes); i++){
-    //         //     MyCubes[i].Show(&my_mini_shader);
-    //         // }
-    //         // NewCube.Show(&my_mini_shader);
-    //         for (int i = 0; i < sizeof(Cubes)/sizeof(Cubes[0]); i++)
-    //         {
-
-    //         }
-            
-    //         glfwSwapBuffers(window);
-    //         glfwPollEvents();    
-            
-    //     };
-        // glfwTerminate();
 
 
 }

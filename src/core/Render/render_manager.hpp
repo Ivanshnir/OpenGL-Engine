@@ -20,9 +20,6 @@ class Render_Manager{
     static Render_Manager & GET();
     void FrameRender();
     private:
-    std::vector<GameObject*> objects_pool;
-    std::vector<Shader*> shaders_pool;
-    std::vector<Texture*> textures_pool;
     Render_Manager() {};
     void _obj_render(GameObject &);
 };

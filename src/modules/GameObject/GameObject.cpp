@@ -4,30 +4,93 @@
 #include "../../core/defaults.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <format>
+#include <algorithm>
+#include <utility>
 const unsigned int GameObject::ID() const{
     return my_id.GetID();
 }
 const unsigned int GameObject::VAO() const{ return _VAO; };
 template <typename T>
 T& GameObject::GetComponent() const{
-    return nullptr;
+    LOG("GetComponent didn`t took any args(Object: " << *this << ")", FATAL);
+    throw std::runtime_error("GetComponent didn`t took any args");
 }
 template <>
 Shader& GameObject::GetComponent<Shader>() const{
+    if(shader == nullptr){
+        LOG("Shader is nullptr(Object: " << *this << ")", FATAL);
+        throw std::runtime_error("GetComponent<Shader>() is nullptr");
+    }
     return *shader;
 }
 template <>
 Texture& GameObject::GetComponent<Texture>() const{
+    if(texture == nullptr){
+        LOG("Texture is nullptr(Object: " << *this << ")", FATAL);
+        throw std::runtime_error("GetComponent<Texture>() is nullptr");
+    }
     return *texture;
 }
 template <>
 Transform& GameObject::GetComponent<Transform>() const{
+    if(transform == nullptr){
+
+        LOG("Transform is nullptr(Object: " << *this << ")", FATAL);
+        throw std::runtime_error("GetComponent<Transform>() is nullptr");
+    }
     return *transform;
 }
 
-void GameObject::_gl_load(){
+template <typename T>
+T * GameObject::Get() const{
+    LOG("GetComponent didn`t took any args(Object: " << *this << ")", FATAL);
+    throw std::runtime_error("GetComponent didn`t took any args");
+}
+template <>
+Shader * GameObject::Get<Shader>() const{
+    if(shader == nullptr) return nullptr;
+    return shader;
+}
+template <>
+Texture * GameObject::Get<Texture>() const{
+    if(texture == nullptr) return nullptr;
+    return texture;
+}
+template <>
+Transform * GameObject::Get<Transform>() const{
+    if(transform == nullptr) return nullptr;
+    return transform;
+}
+
+
+bool GameObject::_gl_load(){
     LOG("", TRACE);
-    Render_Manager& rnd = Render_Manager::GET();
+    if(vertices.size()%3 != 0 || indices.size()%3 != 0){
+        LOG("Vertices or indices not correct", ERROR);
+        return false;
+    }
+    if(shader == nullptr || transform == nullptr){
+        LOG("Haven`t transform or shader",ERROR);
+        return false;
+    }
+    std::vector<float> full_buf;
+    size_t v_pl = 0;
+    size_t uv_pl = 0;
+    for(size_t i = 0; i < vertices.size()/3; i++){
+        for(unsigned char j = 0; j < 3; j++){
+            full_buf.emplace_back(vertices[v_pl+j]);
+        }
+        v_pl+=3;
+        for(unsigned char j = 0; j < 2; j++){
+            if(uv.size() == 0 || uv.size() <= i+j){
+                full_buf.emplace_back(0.0f);
+            }else{
+                full_buf.emplace_back(uv[uv_pl+j]);
+            }
+            
+        }
+        uv_pl+=2;
+    }
     glGenVertexArrays(1, &_VAO);
     glGenBuffers(1, &_VBO);
     glGenBuffers(1, &_EBO);
@@ -35,7 +98,7 @@ void GameObject::_gl_load(){
     glBindVertexArray(_VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertices[0]), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, full_buf.size() * sizeof(full_buf[0]), full_buf.data(), GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices[0]), indices.data(), GL_STATIC_DRAW);
@@ -43,119 +106,155 @@ void GameObject::_gl_load(){
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    rnd.Render_Add(this);
+    return true;
 }
 
 GameObject::GameObject(){
     LOG("", TRACE);
+    force_unload = false;
+    loaded = false;
     my_id.OccupyID();
     vertices = {};
     indices = {};
     uv = {};
     shader = nullptr;
     texture = nullptr;
-    transform = std::make_unique<Transform>();
+    transform = new Transform();
     name = "Empty"+std::to_string(my_id.GetID());
     LOG("GameObject '"+name+"' was created succesfull", INFO);
-    _gl_load();
-     LOG(*this, DEBUG);
+    LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
 }
 GameObject::GameObject(ObjInstruction & MeshTemplate){
     LOG("", TRACE);
+    force_unload = false;
+    loaded = false;
+    
     my_id.OccupyID();
-    shader = std::make_shared<Shader>(SHD_DEF_VERT_PATH, SHD_DEF_FRAG_PATH);
+    shader = Shader::get_default_shader();
     if(!shader){
         LOG("GameObject '"+name+"' haven`t working shader linked", WARN);
     }
     vertices = MeshTemplate.vertices;
     indices = MeshTemplate.indices;
-    transform = std::make_unique<Transform>();
+    uv = MeshTemplate.uv;
+    transform = new Transform();
     name = MeshTemplate.name+std::to_string(my_id.GetID());
     LOG("GameObject '"+name+"' was created succesfull", INFO);
-    _gl_load();
     LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
 }
 
 // rule of 5
 GameObject& GameObject::operator=(const GameObject& Target){
+
     LOG("", TRACE);
+    force_unload = false;
+    loaded = false;
     if(this != &Target){
-        transform = std::make_unique<Transform>(Target.GetComponent<Transform>());
-        shader = std::make_shared<Shader>(Target.GetComponent<Shader>());
+        transform = new Transform(Target.GetComponent<Transform>());
+        shader = Target.Get<Shader>();
         name = Target.name;
+        vertices = Target.vertices;
+        indices = Target.indices;
+        uv = Target.uv;
         if(Target.texture != nullptr)
-            texture = std::make_shared<Texture>(Target.GetComponent<Texture>());
+            texture = Target.Get<Texture>();
         else 
             texture = nullptr;
     }
-    _gl_load();
     LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
     return *this;
 }
 GameObject& GameObject::operator=(GameObject && Target){
     LOG("", TRACE);
+    force_unload = false;
+    loaded = false;
     if(this != &Target){
-        transform = std::make_unique<Transform>(Target.GetComponent<Transform>());
-        shader = std::make_shared<Shader>(Target.GetComponent<Shader>());
-        name = Target.name;
-        if(Target.texture != nullptr)
-            texture = std::make_shared<Texture>(Target.GetComponent<Texture>());
-        else 
-            texture = nullptr;
-        
+        transform = std::exchange(Target.transform, nullptr);
+        shader = Target.Get<Shader>();
         Target.shader = nullptr;
-        Target.transform = nullptr;
-        Target.texture = nullptr;
+        name = Target.name;
+        vertices = Target.vertices;
+        indices = Target.indices;
+        uv = Target.uv;
+        if(Target.texture != nullptr){
+            texture = Target.Get<Texture>();
+            Target.texture = nullptr;
+        }
+        else{
+            texture = nullptr;
+        }
+            
+        my_id.OccupyID();
     }
-    _gl_load();
     LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
     return *this;
 }
 GameObject::GameObject(const GameObject & Target){
     LOG("", TRACE);
+    force_unload = false;
+    loaded = false;
     my_id.OccupyID();
-    transform = std::make_unique<Transform>(Target.GetComponent<Transform>());
-    shader = std::make_shared<Shader>(Target.GetComponent<Shader>());
+    transform = new Transform(Target.GetComponent<Transform>());
+    shader = Target.Get<Shader>();
     name = Target.name;
+    vertices = Target.vertices;
+    indices = Target.indices;
+    uv = Target.uv;
     if(Target.texture != nullptr)
-        texture = std::make_shared<Texture>(Target.GetComponent<Texture>());
+        texture = Target.Get<Texture>();
     else 
         texture = nullptr;
-    
-    _gl_load();
     LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
 }
 GameObject::GameObject(GameObject && Target){
+
     LOG("", TRACE);
-    my_id.OccupyID();
+    force_unload = false;
+    loaded = false;
     name = Target.name;
-    transform = std::make_unique<Transform>(Target.GetComponent<Transform>());
-    shader = std::make_shared<Shader>(Target.GetComponent<Shader>());
-    if(Target.texture != nullptr)
-        texture = std::make_shared<Texture>(Target.GetComponent<Texture>());
-    else 
+    transform = std::exchange(Target.transform, nullptr);
+    shader = Target.Get<Shader>();
+    Target.shader = nullptr;
+    vertices = Target.vertices;
+    indices = Target.indices;
+    uv = Target.uv;
+
+    if(Target.texture != nullptr){
+        texture = Target.Get<Texture>();
+        Target.texture = nullptr;
+    }
+    else{
         texture = nullptr;
+    }
         
-    
-    _gl_load();
-    
-    Target.~GameObject();
+    my_id.OccupyID();
     LOG(*this, DEBUG);
+    objects_pool.emplace_back(this);
 }
 GameObject::~GameObject(){
     LOG("", TRACE);
     LOG(*this, DEBUG);
+    delete transform;
     transform = nullptr;
     glDeleteVertexArrays(1, &_VAO);
     glDeleteBuffers(1, &_VBO);
     glDeleteBuffers(1, &_EBO);
     shader = nullptr;
     texture = nullptr;
-    my_id.~IDBinder();
-    Render_Manager& rnd = Render_Manager::GET();
-    rnd.Render_Remove<GameObject>(this);
-    LOG("GameObject '"+name+"' was deleted succesfull", INFO);
-    name = "";
+    vertices = {};
+    indices = {};
+    uv = {};
+    auto it = std::find(objects_pool.begin(), objects_pool.end(), this);
+    if(it != objects_pool.end()){
+        objects_pool.erase(it);
+    }else{
+        LOG("PTR not cleans from pool", WARN);
+    }
 }
 Transform::Transform(){
     rotation = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -180,15 +279,23 @@ glm::mat4 Transform::get_matrix(){
     transform_matrix = glm::scale(transform_matrix, scale);
     return transform_matrix;
 }
-
 std::ostream& operator<<(std::ostream & out, const GameObject & Target){
     try{
-        out << std::format("< TYPE: GAMEOBJECT, NAME: {}, VERTICES_SIZE: {}, INDICES_SIZE: {}, TRANSFORM_PTR: {:p}, SHADER_PTR: {:p}, TEXTURE_PTR: {:p}, ID: {}, VBO: {}, VAO: {}, EBO: {} >", Target.name, Target.vertices.size(), Target.indices.size(), static_cast<const void*>(Target.transform.get()), static_cast<const void*>(Target.shader.get()), static_cast<const void*>(Target.texture.get()), Target.ID(), Target._VBO, Target._VAO, Target._EBO);
+        out << std::format("< TYPE: GAMEOBJECT, NAME: {}, VERTICES_SIZE: {}, INDICES_SIZE: {}, TRANSFORM_PTR: {:p}, SHADER_PTR: {:p}, TEXTURE_PTR: {:p}, ID: {}, VBO: {}, VAO: {}, EBO: {} >", Target.name, Target.vertices.size(), Target.indices.size(), static_cast<const void*>(Target.transform), static_cast<const void*>(Target.shader), static_cast<const void*>(Target.texture), Target.ID(), Target._VBO, Target._VAO, Target._EBO);
     }
     catch (const std::exception & e){
         std::cerr << e.what();
     }
     return out;
+}
+std::ostream& operator<<(std::ostream & out,const Transform  & Target){
+    try{
+        out << std::format("<Position:[{},{},{}]; Rotation: [{},{},{}]; Scale:[{},{},{}]>", Target.position.x, Target.position.y, Target.position.z, Target.rotation.x, Target.rotation.y, Target.rotation.z, Target.scale.x, Target.scale.y, Target.scale.z);
+    }
+    catch (const std::exception & e){
+        std::cerr << e.what();
+    }
+    return out;    
 }
 // #include <algorithm>
 // // Main interaction functions
@@ -367,14 +474,14 @@ ObjInstruction CUBE{
     "Cube",
     {
         // positions          // colors           // texture coords
-        0.5f,  0.5f, 0.5f,  1.0f, 1.0f,   // top right
-        0.5f, -0.5f, 0.5f,   1.0f, 0.0f,    // bottom right
-        -0.5f, -0.5f, 0.5f,   0.0f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.5f,   0.0f, 1.0f,    // top left 
-        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,   // top right
-        0.5f, -0.5f, -0.5f,   1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, -0.5f,   0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, -0.5f,   0.0f, 1.0f,   // top left         
+        0.5f,  0.5f, 0.5f,     // top right
+        0.5f, -0.5f, 0.5f,       // bottom right
+        -0.5f, -0.5f, 0.5f,     // bottom left
+        -0.5f,  0.5f, 0.5f,      // top left 
+        0.5f,  0.5f, -0.5f,     // top right
+        0.5f, -0.5f, -0.5f,   // bottom right
+        -0.5f, -0.5f, -0.5f,    // bottom left
+        -0.5f,  0.5f, -0.5f,      // top left         
     },
     {
         0, 1, 3,
@@ -391,6 +498,15 @@ ObjInstruction CUBE{
         4, 7, 3
 
 
+    },
+    {
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+        0.0f, 0.0f,
+        0.0f, 1.0f,
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+        0.0f, 0.0f,
+        0.0f, 1.0f,
     }
 };
-

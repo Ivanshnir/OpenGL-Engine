@@ -5,6 +5,8 @@
 #include <glm/glm.hpp>
 #include <memory>
 #include <iostream>
+constexpr const char * const SHD_DEF_VERT_PATH = "./src/shaders/DefaultShaders/vert_shader.glsl";
+constexpr const char * const SHD_DEF_FRAG_PATH = "./src/shaders/DefaultShaders/frag_shader.glsl";
 enum UniformType{
     U_Float,
     U_Int,
@@ -56,10 +58,17 @@ class Shader{
     //Destructor with Constructors
     ~Shader();
     Shader(const std::string & Vertex_Path, const std::string & Fragmment_Path);
+    Shader(const Shader &);
+    static Shader * get_default_shader();
+    const std::string & GetVertPath() const;
+    const std::string & GetFragPath() const;
     bool operator==(const Shader & other);
     bool operator==(const Shader * other);
     explicit operator bool() const; 
     private:
+    inline static std::vector<Shader *>shaders_pool;
+    std::string vert_path;
+    std::string frag_path;
     bool canBeUsed = false;
     unsigned int  * current_shader_programm = nullptr;
     std::string debug_message;
@@ -89,6 +98,7 @@ struct ObjInstruction{
     std::string name;
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
+    std::vector<float> uv;
 };
 
 extern ObjInstruction CUBE;
@@ -102,7 +112,7 @@ class Transform{
     glm::vec3 scale;
     glm::vec3 position;
     glm::mat4 get_matrix();
-    
+    friend std::ostream& operator<<(std::ostream &,const Transform  &);
 
 };
 class GameObject{
@@ -113,6 +123,8 @@ class GameObject{
     std::vector<float> uv;
     template <typename T>
     T& GetComponent() const;
+    template <typename T>
+    T* Get() const;
     GameObject();
     GameObject(ObjInstruction &);
     // rule of 5
@@ -125,14 +137,18 @@ class GameObject{
     const unsigned int ID() const;
     friend std::ostream& operator<<(std::ostream &, const GameObject &);
     private:
+    inline static std::vector<GameObject *>objects_pool;
+    friend class Render_Manager;
     IDBinder<GameObject> my_id;
-    void _gl_load();
+    bool loaded;
+    bool force_unload;
+    bool _gl_load();
     unsigned int _VBO;
     unsigned int _EBO;
     unsigned int _VAO;
-    std::unique_ptr<Transform> transform;
-    std::shared_ptr<Texture> texture;
-    std::shared_ptr<Shader> shader;
+    Transform * transform;
+    Texture * texture;
+    Shader * shader;
 
 };
 

@@ -1,4 +1,5 @@
 #include "debug.hpp"
+#include <filesystem>
 std::fstream file;
 std::string buffer;
 
@@ -6,7 +7,8 @@ std::string buffer;
 int flushTrigger = 0;
 bool isOpen = false;
 bool logger::init(std::string fileName, int bufferSize, const bool CMD){
-    file.open("src\\core\\Debugger\\"+fileName, std::fstream::out | std::fstream::trunc);
+    std::filesystem::create_directories("LOGS");
+    file.open("LOGS\\"+fileName, std::fstream::out | std::fstream::trunc);
     if(!file.is_open())
         return false;
     flushTrigger = bufferSize;

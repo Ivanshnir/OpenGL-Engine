@@ -39,27 +39,27 @@ namespace logger{
     void log(States state, std::string context,int line, std::string funcName, std::string fileName);
 }
 
-#define LOG_FATAL(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
-#define LOG_ERROR(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+#define LOG_FATAL(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
+#define LOG_ERROR(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
 #define LOG_LEVEL 3
 #if LOG_LEVEL >= 1
-    #define LOG_WARN(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+    #define LOG_WARN(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
 #else 
     #define LOG_WARN(msg, state) {}
 #endif
 #if LOG_LEVEL >= 2
-    #define LOG_INFO(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+    #define LOG_INFO(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
 #else
     #define LOG_INFO(msg, state) {}
 #endif
 #if LOG_LEVEL >= 3
-    #define LOG_TRACE(msg, state) {std::ostringstream oss{}; oss << msg; logger::Tracer(oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+    #define LOG_TRACE(msg, state) {std::ostringstream oss{}; oss << msg; logger::Tracer(oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
 #else
     #define LOG_TRACE(msg, state) {}
 #endif
 
 #if DEBUG_MODE  
-    #define LOG_DEBUG(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE_NAME__);}
+    #define LOG_DEBUG(msg, state) {std::ostringstream oss{}; oss << msg; logger::log(state, oss.str(), __LINE__, __FUNCTION__ , __FILE__);}
 #else
     #define LOG_DEBUG(msg, state) {}
 #endif
